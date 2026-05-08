@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+/* Subtle “anime vibe” gloss + scrollbars */
+* {
+  scrollbar-color: rgba(255, 0, 51, 0.55) rgba(255, 255, 255, 0.05);
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(255, 0, 51, 0.92), rgba(239, 68, 68, 0.75));
+  border-radius: 999px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.glass {
+  background: rgba(10, 10, 16, 0.55);
+  backdrop-filter: blur(14px);
+}
+
+.blood-edge {
+  box-shadow:
+    0 0 0 1px rgba(255, 0, 51, 0.16),
+    0 0 18px rgba(239, 68, 68, 0.08);
+}
+
+/* Mood-driven background + effects */
+.mood-bg {
+  background:
+    radial-gradient(1200px 620px at 18% 0%, rgba(var(--mood-primary-rgb, 239,68,68), 0.22), transparent 60%),
+    radial-gradient(900px 520px at 82% 18%, rgba(var(--mood-secondary-rgb, 255,0,51), 0.14), transparent 55%),
+    radial-gradient(700px 520px at 55% 85%, rgba(var(--mood-secondary-rgb, 255,0,51), 0.08), transparent 55%);
+  filter: saturate(1.05);
+}
+
+.mood-rain {
+  position: relative;
+}
+
+.mood-rain::after {
+  content: "";
+  position: absolute;
+  inset: -20% -20% -20% -20%;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image: repeating-linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0.12) 0px,
+    rgba(255, 255, 255, 0.12) 2px,
+    transparent 2px,
+    transparent 7px
+  );
+  background-size: 180px 180px;
+  animation: moodRain 1.05s linear infinite;
+  mask-image: radial-gradient(circle at 50% 15%, rgba(0, 0, 0, 1), transparent 70%);
+}
+
+@keyframes moodRain {
+  from {
+    transform: translate3d(0, -40px, 0);
+  }
+  to {
+    transform: translate3d(140px, 40px, 0);
+  }
+}
+
+@keyframes waveBar {
+  from {
+    transform: scaleY(0.35);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.mood-vibe-fast * {
+  transition-duration: 120ms !important;
+}
+
+.mood-vibe-blur {
+  backdrop-filter: blur(8px);
+}
+
