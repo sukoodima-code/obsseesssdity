@@ -21,7 +21,7 @@ export default function ChatAssistant({ onPlay }: { onPlay: (t: Track) => void }
     {
       id: uid(),
       role: "ai",
-      text: "Tell me your mood or genre: “anime lofi night”, “gym phonk”, “sad chill”. If backend AI is running, I’ll use OpenAI; otherwise local mock."
+      text: "Көңіл күйіңізді немесе жанрыңызды айтыңыз: “anime lofi night”, “gym phonk”, “sad chill”. Егер бекенд AI іске қосылған болса, OpenAI қолданамын; әйтпесе жергілікті макет."
     }
   ]);
   const scrollRef = useRef<HTMLDivElement | null>(null);
@@ -65,11 +65,11 @@ export default function ChatAssistant({ onPlay }: { onPlay: (t: Track) => void }
     } catch {
       // Safe fallback to local mock AI
       const rec = recommendTracks(q, TRACKS, 8);
-      const genreStr = rec.detectedGenres.length ? `genres: ${rec.detectedGenres.join(", ")}` : "";
+      const genreStr = rec.detectedGenres.length ? `жанрлар: ${rec.detectedGenres.join(", ")}` : "";
       const hint = [genreStr].filter(Boolean).join(" • ");
       const response = hint
-        ? `Mock mode — ${hint}. Here are recommended tracks for “${rec.query}”.`
-        : `Mock mode. Here are recommended tracks for “${rec.query}”.`;
+        ? `Макет режимі — ${hint}. Бұл сұранысқа ұсынылған тректер: “${rec.query}”.`
+        : `Макет режимі. Бұл сұранысқа ұсынылған тректер: “${rec.query}”.`;
       push({ id: uid(), role: "ai", text: response, tracks: rec.tracks });
     } finally {
       setLoading(false);
@@ -85,8 +85,8 @@ export default function ChatAssistant({ onPlay }: { onPlay: (t: Track) => void }
               <Sparkles className="h-5 w-5 text-black" />
             </span>
             <div>
-              <div className="text-sm font-semibold">AI Assistant</div>
-              <div className="text-xs text-zinc-400">Client-side recommendations (mock)</div>
+              <div className="text-sm font-semibold">AI көмекші</div>
+              <div className="text-xs text-zinc-400">Клиент жағында ұсыныстар (макет)</div>
             </div>
           </div>
           <div className="hidden gap-2 lg:flex">
@@ -152,7 +152,7 @@ export default function ChatAssistant({ onPlay }: { onPlay: (t: Track) => void }
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Type mood or genre…"
+              placeholder="Көңіл күй немесе жанрды жазыңыз…"
               className="glass flex-1 rounded-2xl border border-white/10 px-3 py-3 text-sm outline-none transition focus:border-neon-ember/40"
             />
             <button
@@ -165,7 +165,7 @@ export default function ChatAssistant({ onPlay }: { onPlay: (t: Track) => void }
               )}
             >
               <Send className="h-4 w-4" />
-              {loading ? "Thinking..." : "Send"}
+              {loading ? "Ойланып жатыр..." : "Жіберу"}
             </button>
           </form>
 
@@ -184,15 +184,14 @@ export default function ChatAssistant({ onPlay }: { onPlay: (t: Track) => void }
       </div>
 
       <div className="glass rounded-3xl border border-white/10 p-5 shadow-[0_0_0_1px_rgba(239,68,68,.10)] md:p-6">
-        <div className="text-sm font-semibold">How it works</div>
+        <div className="text-sm font-semibold">Қалай жұмыс істейді</div>
         <div className="mt-2 text-sm text-zinc-400">
-          This is a UI-only demo: your message is parsed locally (keywords → moods/genres), then tracks are scored and
-          shown as “Recommended”.
+          Бұл тек UI демонстрациясы: сіздің хабарыңыз жергілікті түрде талданады (кілтсөздер → көңіл күй/жанр), содан кейін тректер бағаланып “Ұсынылатындар” ретінде көрсетіледі.
         </div>
 
         <div className="mt-4 space-y-3 text-sm">
           <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-            <div className="text-xs text-zinc-500">Examples</div>
+            <div className="text-xs text-zinc-500">Мысалдар</div>
             <div className="mt-2 flex flex-wrap gap-2">
               {["anime lofi night", "romance pop", "work focus", "hype edm", "sad indie"].map((p) => (
                 <span key={p} className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-zinc-200">
@@ -203,9 +202,9 @@ export default function ChatAssistant({ onPlay }: { onPlay: (t: Track) => void }
           </div>
 
           <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-            <div className="text-xs text-zinc-500">Note</div>
+            <div className="text-xs text-zinc-500">Ескерту</div>
             <div className="mt-2 text-sm text-zinc-400">
-              No backend, no real audio. Player is simulated. Perfect for a modern portfolio-style UI.
+              Бекенд жоқ, нақты аудио жоқ. Ойнатқыш макет. Заманауи портфолио интерфейсі үшін тамаша.
             </div>
           </div>
         </div>

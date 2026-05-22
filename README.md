@@ -58,14 +58,47 @@ npm run dev
 
 Then open the local dev server URL shown in the terminal.
 
-## Telegram Bot (optional)
+## Музыка (демо-треки)
+
+В `public/music/` должны лежать аудиофайлы. Если их нет, сгенерируйте демо:
 
 ```bash
-cd server/telegram-bot
-npm install
-cp .env.example .env
-npm start
+npm run setup:media
 ```
+
+После этого нажмите Play на любом треке — должны играть короткие демо-звуки (4 сек).
+
+## Telegram Bot
+
+### Куда вставить ссылку на бота
+
+В **корне проекта** создайте файл `.env` (скопируйте из `.env.example`):
+
+```env
+VITE_TELEGRAM_BOT_URL=https://t.me/ВашБотUsername
+```
+
+Эта ссылка откроется на странице «Telegram» и в кнопке «Ботты ашу».
+
+### Запуск бота
+
+1. Создайте бота в Telegram: [@BotFather](https://t.me/BotFather) → `/newbot` → скопируйте **токен**.
+2. В `server/telegram-bot/.env` (скопируйте из `.env.example`):
+
+```env
+BOT_TOKEN=ваш_токен_от_BotFather
+SITE_URL=http://localhost:5173
+AI_API_BASE_URL=http://localhost:8787
+```
+
+3. Запустите AI-сервер и бота (в разных терминалах):
+
+```bash
+npm run server:dev
+npm run bot:start
+```
+
+(Бірінші рет: `npm run bot:install`)
 
 ## Shared AI Brain
 

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <defs>
+    <linearGradient id="kok1" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="50%" stop-color="#4c1d95" />
+      <stop offset="100%" stop-color="#fbbf24" />
+    </linearGradient>
+    <radialGradient id="kok2" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#fcd34d" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#7c2d12" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#kok1)" />
+  <circle cx="400" cy="320" r="240" fill="url(#kok2)" />
+  <path d="M0 480 Q200 420 400 400 T800 480" fill="#ec4899" fill-opacity="0.15" />
+  <path d="M0 520 Q250 440 500 430 T800 550" fill="#8b5cf6" fill-opacity="0.1" />
+  <text x="400" y="380" text-anchor="middle" font-family="Inter, sans-serif" font-size="72" fill="#ffffff" font-weight="700">КӨКЖИЕК</text>
+  <text x="400" y="450" text-anchor="middle" font-family="Inter, sans-serif" font-size="22" fill="#fef3c7" opacity="0.9">Dreamy Anime Sunset</text>
+  <circle cx="100" cy="100" r="3" fill="#fbbf24" opacity="0.9" />
+  <circle cx="750" cy="120" r="4" fill="#f472b6" opacity="0.7" />
+  <circle cx="200" cy="700" r="2.5" fill="#60a5fa" opacity="0.6" />
+</svg>

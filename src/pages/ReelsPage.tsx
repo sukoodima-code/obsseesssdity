@@ -1,13 +1,15 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useOutletContext } from "react-router-dom";
+import { usePlayer } from "../context/PlayerContext";
 import { ChevronLeft, Sparkles } from "lucide-react";
 import type { Track } from "../data/mock";
 import { similarTracks } from "../music/filter";
 import { recommendTracks } from "../lib/recommend";
 import { useMood } from "../theme/MoodContext";
 import { cn } from "../lib/cn";
+import TrackCover from "../components/TrackCover";
 
-type Ctx = { tracks: Track[]; currentTrack: Track; setCurrentTrack: (t: Track) => void };
+type Ctx = { tracks: Track[]; currentTrack: Track };
 
 type SoundMode = "bass" | "cinema" | "focus";
 
@@ -41,7 +43,8 @@ function Waveform({ mode, mood }: { mode: SoundMode; mood: string }) {
 }
 
 export default function ReelsPage() {
-  const { tracks, currentTrack, setCurrentTrack } = useOutletContext<Ctx>();
+  const { tracks, currentTrack } = useOutletContext<Ctx>();
+  const { playTrack } = usePlayer();
   const { mood } = useMood();
   const [activeId, setActiveId] = useState(currentTrack.id);
   const [soundMode, setSoundMode] = useState<SoundMode>("bass");
@@ -106,7 +109,7 @@ export default function ReelsPage() {
         <div className="hidden w-[360px] flex-col gap-4 lg:flex">
           <div className="glass rounded-3xl border border-white/10 p-5">
             <div className="flex items-center justify-between gap-3">
-              <div className="text-sm font-semibold">Mood AI</div>
+              <div className="text-sm font-semibold">Көңіл күй AI</div>
               <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-zinc-200">
                 <Sparkles className="h-4 w-4 text-neon-ember/80" />
                 {mood}
@@ -114,18 +117,18 @@ export default function ReelsPage() {
             </div>
 
             <div className="mt-3 text-sm text-zinc-400">
-              Вертикальный reels: свайп вниз → новый трек, плюс рекомендации и похожие треки.
+              Тік рилс: төмен сырғытыңыз → жаңа трек, плюс ұсыныстар мен ұқсас тректер.
             </div>
 
             <div className="mt-4">
-              <div className="text-xs text-zinc-500">AI Sound Boost</div>
+              <div className="text-xs text-zinc-500">AI дыбыс күшейткіші</div>
               <div className="mt-2 flex flex-wrap gap-2">
                 <ModePill label="Bass+" active={soundMode === "bass"} onClick={() => setSoundMode("bass")} />
-                <ModePill label="Cinema" active={soundMode === "cinema"} onClick={() => setSoundMode("cinema")} />
-                <ModePill label="Focus Mode" active={soundMode === "focus"} onClick={() => setSoundMode("focus")} />
+                <ModePill label="Кино" active={soundMode === "cinema"} onClick={() => setSoundMode("cinema")} />
+                <ModePill label="Фокус режимі" active={soundMode === "focus"} onClick={() => setSoundMode("focus")} />
               </div>
               <div className="mt-3 rounded-2xl border border-white/10 bg-white/[0.03] p-3">
-                <div className="text-xs text-zinc-500">Preview waveform (visual)</div>
+                <div className="text-xs text-zinc-500">Дыбыс формасын алдын ала қарау</div>
                 <div className="mt-2">
                   <Waveform mode={soundMode} mood={mood} />
                 </div>
@@ -134,15 +137,17 @@ export default function ReelsPage() {
           </div>
 
           <div className="glass rounded-3xl border border-white/10 p-5">
-            <div className="text-sm font-semibold">Рекомендуемые</div>
+            <div className="text-sm font-semibold">Ұсынылатындар</div>
             <div className="mt-2 space-y-2">
               {ai.map((t) => (
                 <button
                   key={t.id}
-                  onClick={() => setCurrentTrack(t)}
+                  onClick={() => playTrack(t, { queue: feedTracks, autoPlay: true })}
                   className="group flex w-full items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-3 text-left transition hover:-translate-y-0.5 hover:bg-white/[0.06]"
                 >
-                  <img src={t.coverUrl} alt="" className="h-10 w-10 rounded-2xl object-cover" />
+                  <div className="h-10 w-10 overflow-hidden rounded-2xl border border-white/10">
+                    <TrackCover id={t.id} title={t.title} coverUrl={t.coverUrl} className="h-full w-full" />
+                  </div>
                   <div className="min-w-0">
                     <div className="truncate text-sm font-semibold">{t.title}</div>
                     <div className="truncate text-xs text-zinc-400">{t.artist}</div>
@@ -159,7 +164,7 @@ export default function ReelsPage() {
             className="fixed left-[300px] top-20 z-20 hidden rounded-2xl border border-white/10 bg-black/40 px-3 py-2 text-xs text-zinc-200 backdrop-blur md:flex"
           >
             <ChevronLeft className="mr-2 inline h-4 w-4" />
-            Back
+            Артқа
           </button>
 
           <div
@@ -176,10 +181,10 @@ export default function ReelsPage() {
                   key={t.id}
                   data-reels-card="true"
                   data-track-id={t.id}
-                  className="relative mb-2 h-dvh snap-start px-4 md:px-6"
+                  className="relative mb-2 h-[100dvh] snap-start px-4 md:px-6"
                 >
                   <div className="absolute inset-0">
-                    <img src={t.coverUrl} alt="" className="h-full w-full object-cover opacity-50" />
+                    <TrackCover id={t.id} title={t.title} coverUrl={t.coverUrl} className="absolute inset-0 h-full w-full opacity-60" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
                     {mood === "sad" ? <div className="absolute inset-0 backdrop-blur-sm" /> : null}
                   </div>
@@ -198,7 +203,10 @@ export default function ReelsPage() {
                       </div>
 
                       <button
-                        onClick={() => setCurrentTrack(t)}
+                        onClick={() => {
+                          playTrack(t, { queue: feedTracks, autoPlay: true });
+                          setActiveId(t.id);
+                        }}
                         className={cn(
                           "inline-flex items-center gap-2 rounded-2xl border px-4 py-3 text-sm font-semibold transition",
                           isActive
@@ -206,7 +214,7 @@ export default function ReelsPage() {
                             : "border-white/10 bg-white/5 hover:bg-white/10"
                         )}
                       >
-                        {isActive ? "Playing" : "Play"}
+                        {isActive ? "Ойнатылуда" : "Ойнату"}
                       </button>
                     </div>
 
@@ -215,7 +223,7 @@ export default function ReelsPage() {
 
                       <div className="flex items-center gap-2">
                         <div className="rounded-2xl border border-white/10 bg-white/5 px-3 py-2">
-                          <div className="text-[11px] text-zinc-500">Похожие</div>
+                          <div className="text-[11px] text-zinc-500">Ұқсас</div>
                           <div className="mt-1 text-xs font-semibold text-zinc-200">{similar.length ? similar[0].title : "—"}</div>
                         </div>
                         <div className="rounded-2xl border border-white/10 bg-white/5 px-3 py-2">
@@ -229,7 +237,7 @@ export default function ReelsPage() {
                       {similar.slice(0, 3).map((s) => (
                         <button
                           key={s.id}
-                          onClick={() => setCurrentTrack(s)}
+                          onClick={() => playTrack(s, { queue: feedTracks, autoPlay: true })}
                           className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-zinc-200 transition hover:border-white/20 hover:bg-white/10"
                         >
                           {s.title}
@@ -238,10 +246,6 @@ export default function ReelsPage() {
                     </div>
                   </div>
 
-                  {/* Activate track for autoplay preview */}
-                  {isActive ? (
-                    <AutoplaySync active={isActive} onActive={() => setCurrentTrack(t)} />
-                  ) : null}
                 </div>
               );
             })}
@@ -266,11 +270,4 @@ function ModePill({ label, active, onClick }: { label: string; active: boolean; 
   );
 }
 
-function AutoplaySync({ active, onActive }: { active: boolean; onActive: () => void }) {
-  useEffect(() => {
-    if (!active) return;
-    onActive();
-  }, [active, onActive]);
-  return null;
-}
 

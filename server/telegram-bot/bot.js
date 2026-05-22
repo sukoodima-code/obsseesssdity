@@ -5,6 +5,7 @@ const { songs, bestSongsForQuery, playlistForMood } = require("./music");
 const BOT_TOKEN = process.env.BOT_TOKEN;
 const SITE_URL = process.env.SITE_URL || "http://localhost:5173";
 const AI_API_BASE_URL = process.env.AI_API_BASE_URL || "http://localhost:8787";
+const CAN_USE_URL_BUTTONS = SITE_URL.startsWith("https://");
 
 if (!BOT_TOKEN) {
   // eslint-disable-next-line no-console
@@ -57,12 +58,12 @@ async function buildUnifiedReply(userId, text) {
     const playlist = mood ? playlistForMood(mood) : null;
 
     const answer = [
-      String(chatRes?.text || "Готово, подбираю музыку."),
+      String(chatRes?.text || "Жақсы, музыка іздеп жатырмын."),
       recRes?.text ? `\n${String(recRes.text)}` : "",
       "",
-      "🎧 Треки:",
+      "🎧 Тректер:",
       formatSongs(pickedSongs),
-      playlist ? `\nПлейлист: ${playlist.title}\nОткрыть: ${SITE_URL}/playlists/${playlist.id}` : `\nОткрыть: ${SITE_URL}/reels`
+      playlist ? `\nПлейлист: ${playlist.title}\nАшу: ${SITE_URL}/playlists/${playlist.id}` : `\nАшу: ${SITE_URL}/reels`
     ].join("\n");
 
     const nextHistory = [...history, { role: "user", text }, { role: "ai", text: answer }].slice(-10);
@@ -72,11 +73,11 @@ async function buildUnifiedReply(userId, text) {
     // Fallback if API not running.
     const localSongs = bestSongsForQuery(text, 5);
     const fallbackAnswer = [
-      "⚠️ AI сервер сейчас недоступен, использую локальный fallback.",
+      "⚠️ AI сервері қазір қолжетімді емес, жергілікті резервтік режимге ауыстырдым.",
       "",
-      "🎧 Треки:",
+      "🎧 Тректер:",
       formatSongs(localSongs),
-      `\nОткрыть: ${SITE_URL}/assistant`
+      `\nАшу: ${SITE_URL}/assistant`
     ].join("\n");
     const nextHistory = [...history, { role: "user", text }, { role: "ai", text: fallbackAnswer }].slice(-10);
     userHistory.set(userId, nextHistory);
@@ -86,12 +87,12 @@ async function buildUnifiedReply(userId, text) {
 
 bot.start((ctx) => {
   return ctx.reply(
-    "🎧 Welcome to AI Music Bot!\n\nНапиши настроение или вопрос.\nПример: “Мне грустно”, “gym phonk”, “кто такой Mozart?”",
+    "🎧 AI Музыка Ботқа қош келдіңіз!\n\nКөңіл күйіңізді немесе сұрағыңызды жазыңыз.\nМысалы: “Маған мұңды музыка керек”, “gym phonk”, “anime vibes”",
     Markup.inlineKeyboard([
-      Markup.button.callback("Chill", "MOOD:chill"),
-      Markup.button.callback("Energetic", "MOOD:energetic"),
-      Markup.button.callback("Sad", "MOOD:sad"),
-      Markup.button.callback("Focus", "MOOD:focus")
+      Markup.button.callback("Тыныш", "MOOD:chill"),
+      Markup.button.callback("Энергия", "MOOD:energetic"),
+      Markup.button.callback("Мұң", "MOOD:sad"),
+      Markup.button.callback("Фокус", "MOOD:focus")
     ])
   );
 });
@@ -100,16 +101,19 @@ bot.action(/MOOD:(.+)/, async (ctx) => {
   const mood = ctx.match[1];
   const text = `mood ${mood}`;
   const userId = String(ctx.from?.id || "anon");
+
+  await ctx.answerCbQuery().catch(() => null);
+
   const answer = await buildUnifiedReply(userId, text);
 
-  await ctx.answerCbQuery();
-  await ctx.reply(
-    `🔥 ${mood.toUpperCase()} picks\n\n${answer}`,
-    Markup.inlineKeyboard([
-      Markup.button.url("Открыть плейлисты", `${SITE_URL}/playlists`),
-      Markup.button.url("AI Assistant", `${SITE_URL}/assistant`)
-    ])
-  );
+  const keyboard = CAN_USE_URL_BUTTONS
+    ? Markup.inlineKeyboard([
+        Markup.button.url("Плейлисттерді ашу", `${SITE_URL}/playlists`),
+        Markup.button.url("AI көмекші", `${SITE_URL}/assistant`)
+      ])
+    : undefined;
+
+  await ctx.reply(`🔥 ${mood.toUpperCase()} ұсыныстары\n\n${answer}`, keyboard);
 });
 
 bot.on("text", async (ctx) => {
@@ -118,13 +122,14 @@ bot.on("text", async (ctx) => {
 
   if (!text) return;
   const answer = await buildUnifiedReply(userId, text);
-  return ctx.reply(
-    answer,
-    Markup.inlineKeyboard([
-      Markup.button.url("Reels Feed", `${SITE_URL}/reels`),
-      Markup.button.url("AI Assistant", `${SITE_URL}/assistant`)
-    ])
-  );
+  const keyboard = CAN_USE_URL_BUTTONS
+    ? Markup.inlineKeyboard([
+        Markup.button.url("Рилс лентасы", `${SITE_URL}/reels`),
+        Markup.button.url("AI көмекші", `${SITE_URL}/assistant`)
+      ])
+    : undefined;
+
+  return ctx.reply(answer, keyboard);
 });
 
 bot.launch();

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <defs>
+    <linearGradient id="aiGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#14213d" />
+      <stop offset="100%" stop-color="#0ea5e9" />
+    </linearGradient>
+    <radialGradient id="aiGlow" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.55" />
+      <stop offset="100%" stop-color="#14213d" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="800" height="800" rx="120" fill="url(#aiGrad)" />
+  <circle cx="500" cy="280" r="200" fill="url(#aiGlow)" />
+  <path d="M180 560 C260 480 340 460 460 500 C580 540 660 510 760 470" fill="none" stroke="#7dd3fc" stroke-width="20" stroke-linecap="round" opacity="0.75" />
+  <text x="400" y="420" text-anchor="middle" font-family="Inter, sans-serif" font-size="64" fill="#ffffff" font-weight="700">AI Ұсыныстары</text>
+  <text x="400" y="490" text-anchor="middle" font-family="Inter, sans-serif" font-size="28" fill="#bfdbfe" opacity="0.95">Сіздің тыңдау стиліңізге</text>
+</svg>

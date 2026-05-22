@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <defs>
+    <linearGradient id="almg1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0e27" />
+      <stop offset="100%" stop-color="#1a1547" />
+    </linearGradient>
+    <radialGradient id="almg2" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#0a0e27" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#almg1)" />
+  <circle cx="400" cy="280" r="220" fill="url(#almg2)" />
+  <path d="M100 520 Q200 480 350 450 T700 520" fill="none" stroke="#a78bfa" stroke-width="3" opacity="0.6" />
+  <path d="M80 560 Q250 520 500 510 T760 580" fill="none" stroke="#60a5fa" stroke-width="2" opacity="0.4" />
+  <path d="M120 600 Q280 550 450 540 T740 620" fill="none" stroke="#f472b6" stroke-width="2" opacity="0.3" />
+  <text x="400" y="400" text-anchor="middle" font-family="Inter, sans-serif" font-size="56" fill="#ffffff" font-weight="800" letter-spacing="2">ТҮНГІ АЛМАТЫ</text>
+  <text x="400" y="460" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" fill="#c7d2fe" opacity="0.8">Anime Cyberpunk Night</text>
+  <circle cx="150" cy="150" r="8" fill="#fbbf24" opacity="0.8" />
+  <circle cx="700" cy="180" r="6" fill="#60a5fa" opacity="0.7" />
+  <circle cx="720" cy="650" r="5" fill="#f472b6" opacity="0.6" />
+</svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <defs>
+    <linearGradient id="samal1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f4c75" />
+    </linearGradient>
+    <radialGradient id="samal2" cx="50%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#0f4c75" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#samal1)" />
+  <circle cx="400" cy="300" r="200" fill="url(#samal2)" />
+  <ellipse cx="200" cy="550" rx="140" ry="70" fill="#0f4c75" opacity="0.6" />
+  <ellipse cx="600" cy="580" rx="120" ry="60" fill="#0f4c75" opacity="0.5" />
+  <path d="M150 420 Q250 380 400 370 Q550 360 700 400" fill="none" stroke="#7dd3fc" stroke-width="3" opacity="0.7" />
+  <path d="M120 480 Q280 430 480 420 Q680 410 740 460" fill="none" stroke="#06b6d4" stroke-width="2" opacity="0.5" />
+  <text x="400" y="380" text-anchor="middle" font-family="Inter, sans-serif" font-size="68" fill="#ffffff" font-weight="800">SAMAL</text>
+  <text x="400" y="450" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" fill="#cffafe" opacity="0.9">Chill Lake Vibes</text>
+  <circle cx="250" cy="180" r="8" fill="#06b6d4" opacity="0.8" />
+  <circle cx="700" cy="200" r="6" fill="#7dd3fc" opacity="0.7" />
+  <circle cx="150" cy="650" r="5" fill="#06b6d4" opacity="0.6" />
+</svg>

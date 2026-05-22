@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <defs>
+    <linearGradient id="rainy1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0c2d48" />
+    </linearGradient>
+    <radialGradient id="rainy2" cx="50%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#60a5fa" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#0c2d48" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#rainy1)" />
+  <circle cx="400" cy="320" r="200" fill="url(#rainy2)" />
+  <path d="M50 200 L70 350 M150 180 L175 320 M270 160 L305 300 M400 140 L435 280 M530 160 L565 310 M650 190 L680 340 M750 220 L770 380" stroke="#38bdf8" stroke-width="4" stroke-linecap="round" opacity="0.8" />
+  <path d="M100 450 L125 580 M320 440 L350 580 M520 450 L555 590 M700 460 L720 600" stroke="#22d3ee" stroke-width="3" stroke-linecap="round" opacity="0.6" />
+  <path d="M180 480 L205 640 M420 470 L450 640 M680 480 L705 640" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" opacity="0.4" />
+  <rect x="100" y="500" width="600" height="240" rx="80" fill="#0c2d48" fill-opacity="0.85" />
+  <text x="400" y="400" text-anchor="middle" font-family="Inter, sans-serif" font-size="62" fill="#ffffff" font-weight="800">RAINY STREETS</text>
+  <text x="400" y="460" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" fill="#bae6fd" opacity="0.9">Chillwave Night Ride</text>
+</svg>

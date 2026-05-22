@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <defs>
+    <linearGradient id="sunset1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#ca8a04" />
+    </linearGradient>
+    <radialGradient id="sunset2" x1="50%" y1="35%" r="55%">
+      <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#ca8a04" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#sunset1)" />
+  <circle cx="400" cy="300" r="210" fill="url(#sunset2)" />
+  <path d="M0 550 Q200 480 400 470 Q600 460 800 550" fill="#f59e0b" fill-opacity="0.15" />
+  <text x="400" y="380" text-anchor="middle" font-family="Inter, sans-serif" font-size="56" fill="#ffffff" font-weight="800">SUNSET DOMBYRA</text>
+  <text x="400" y="450" text-anchor="middle" font-family="Inter, sans-serif" font-size="21" fill="#fcd34d" opacity="0.9">Acoustic Twilight</text>
+</svg>

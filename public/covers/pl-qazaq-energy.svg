@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <defs>
+    <linearGradient id="energyGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f97316" />
+      <stop offset="100%" stop-color="#f43f5e" />
+    </linearGradient>
+    <radialGradient id="energyGlow" cx="50%" cy="55%" r="55%">
+      <stop offset="0%" stop-color="#fdba74" stop-opacity="0.55" />
+      <stop offset="100%" stop-color="#f43f5e" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="800" height="800" rx="120" fill="url(#energyGrad)" />
+  <path d="M140 520 C220 450 310 420 420 455 C530 490 640 430 760 380" fill="none" stroke="#fdf2f8" stroke-width="22" stroke-linecap="round" opacity="0.85" />
+  <circle cx="560" cy="240" r="170" fill="url(#energyGlow)" />
+  <text x="400" y="420" text-anchor="middle" font-family="Inter, sans-serif" font-size="68" fill="#fff" font-weight="700">Qazaq Energy</text>
+  <text x="400" y="490" text-anchor="middle" font-family="Inter, sans-serif" font-size="28" fill="#fee2e2" opacity="0.9">Хип-хоп пен трап</text>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <defs>
+    <linearGradient id="deep1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e3a5f" />
+    </linearGradient>
+    <radialGradient id="deep2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#7dd3fc" stop-opacity="0.65" />
+      <stop offset="100%" stop-color="#1e3a5f" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#deep1)" />
+  <circle cx="400" cy="380" r="200" fill="url(#deep2)" />
+  <ellipse cx="150" cy="620" rx="140" ry="70" fill="#0f172a" opacity="0.7" />
+  <ellipse cx="650" cy="640" rx="130" ry="65" fill="#0f172a" opacity="0.6" />
+  <text x="400" y="380" text-anchor="middle" font-family="Inter, sans-serif" font-size="64" fill="#ffffff" font-weight="800">DEEP STEPPE</text>
+  <text x="400" y="450" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" fill="#bfdbfe" opacity="0.9">Cinematic Ambient</text>
+</svg>

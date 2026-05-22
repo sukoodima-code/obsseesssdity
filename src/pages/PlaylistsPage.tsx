@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import SectionHeader from "../components/SectionHeader";
+import TrackCover from "../components/TrackCover";
 import { PLAYLISTS } from "../data/mock";
 import { ChevronRight } from "lucide-react";
 
@@ -7,11 +8,11 @@ export default function PlaylistsPage() {
   return (
     <div className="px-4 py-6 md:px-6">
       <SectionHeader
-        title="Playlists"
-        subtitle="Mock playlists like Spotify / Yandex Music"
+        title="Плейлисттер"
+        subtitle="Таңдаулы плейлисттер және арнайы микстер"
         right={
           <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-zinc-200">
-            {PLAYLISTS.length} playlists
+            {PLAYLISTS.length} плейлист
           </span>
         }
       />
@@ -23,9 +24,8 @@ export default function PlaylistsPage() {
             to={`/playlists/${p.id}`}
             className="group glass flex items-center gap-4 rounded-3xl border border-white/10 p-4 transition hover:-translate-y-0.5 hover:border-neon-crimson/35 hover:bg-white/10 hover:shadow-glow"
           >
-            <div className="relative h-16 w-16 overflow-hidden rounded-2xl border border-white/10">
-              <img src={p.coverUrl} alt="" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.06]" />
-              <div className="absolute inset-0 bg-gradient-to-br from-neon-crimson/20 to-neon-ember/10" />
+            <div className="h-16 w-16 overflow-hidden rounded-2xl border border-white/10">
+              <TrackCover id={p.id} title={p.title} coverUrl={p.coverUrl} className="h-full w-full transition duration-500 group-hover:scale-[1.06]" />
             </div>
             <div className="min-w-0 flex-1">
               <div className="truncate text-sm font-semibold">{p.title}</div>

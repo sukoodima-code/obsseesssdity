@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <defs>
+    <linearGradient id="erk1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#7c2d12" />
+    </linearGradient>
+    <radialGradient id="erk2" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#7c2d12" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#erk1)" />
+  <circle cx="400" cy="350" r="210" fill="url(#erk2)" />
+  <path d="M100 500 Q200 450 350 430 Q500 410 700 480" fill="none" stroke="#fb923c" stroke-width="4" opacity="0.7" />
+  <text x="400" y="380" text-anchor="middle" font-family="Inter, sans-serif" font-size="68" fill="#ffffff" font-weight="800">ЕРКІНДІК</text>
+  <text x="400" y="460" text-anchor="middle" font-family="Inter, sans-serif" font-size="22" fill="#fed7aa" opacity="0.9">Energetic Fusion</text>
+</svg>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <defs>
+    <linearGradient id="rain1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f4c75" />
+    </linearGradient>
+    <radialGradient id="rain2" cx="50%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#0f4c75" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#rain1)" />
+  <circle cx="400" cy="400" r="200" fill="url(#rain2)" />
+  <path d="M80 250 L95 350 M180 200 L200 320 M280 150 L310 280 M400 120 L430 250 M520 140 L555 290 M620 180 L660 330 M720 220 L750 380" stroke="#7dd3fc" stroke-width="3" stroke-linecap="round" opacity="0.7" />
+  <path d="M150 400 L175 520 M350 380 L380 520 M550 390 L580 540 M700 420 L725 570" stroke="#67e8f9" stroke-width="2" stroke-linecap="round" opacity="0.5" />
+  <rect x="200" y="500" width="400" height="200" rx="80" fill="#0f4c75" fill-opacity="0.8" />
+  <text x="400" y="380" text-anchor="middle" font-family="Inter, sans-serif" font-size="68" fill="#ffffff" font-weight="800">ЖАҢБЫР</text>
+  <text x="400" y="450" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" fill="#bfdbfe" opacity="0.85">Lo-Fi Rainy City</text>
+</svg>
